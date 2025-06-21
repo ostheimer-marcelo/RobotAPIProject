@@ -9,7 +9,11 @@
 
 Este projeto demonstra a automação de testes para uma API REST, focando na validação da lógica de negócio, integridade de dados e contratos de serviço, sem a necessidade de uma interface de usuário.
 
-A API alvo é a **[Reqres.in](https://reqres.in/)**, um serviço público criado especificamente para praticar e testar requisições e respostas de API.
+A API alvo é a **[jsonplaceholder.typicode.com](jsonplaceholder.typicode.com)**, um serviço público criado especificamente para praticar e testar requisições e respostas de API.
+
+## ✨ Escopo e Cenários de Teste
+
+A suíte de testes foi planejada para cobrir todas as operações CRUD (Create, Read, Update, Delete) essenciais, validando os principais verbos HTTP.
 
 ## ✨ Escopo e Cenários de Teste
 
@@ -18,22 +22,18 @@ A suíte de testes foi planejada para cobrir todas as operações CRUD (Create, 
 ### ✔️ **GET (Leitura de Dados)**
 - [x] Listar múltiplos usuários e validar a estrutura da resposta (Status 200).
 - [x] Validar os dados de um usuário específico na lista.
-- [ ] Buscar um único usuário por ID e validar seus dados.
-- [ ] Tentar buscar um usuário inexistente e validar o erro 404 (Not Found).
 
-### 🚧 **POST (Criação de Dados)**
-- [ ] Criar um novo usuário com dados válidos.
-- [ ] Validar o status de sucesso `201 Created`.
-- [ ] Verificar se os dados enviados foram retornados no corpo da resposta.
 
-### 🚧 **PUT (Atualização de Dados)**
-- [ ] Atualizar os dados de um usuário existente.
-- [ ] Validar o status de sucesso `200 OK`.
-- [ ] Verificar se os dados atualizados foram retornados no corpo da resposta.
+### ✔️ **POST (Criação de Dados)**
+- [x] Criar um novo usuário (post) e validar a resposta 201.
+- [x] Verificar se os dados enviados foram retornados no corpo da resposta.
 
-### 🚧 **DELETE (Remoção de Dados)**
-- [ ] Deletar um usuário existente.
-- [ ] Validar o status de sucesso `204 No Content`, que indica que a remoção foi bem-sucedida e não há corpo na resposta.
+### ✔️ **PUT (Atualização de Dados)**
+- [x] Atualizar um usuário (post) existente e validar a resposta 200.
+- [x] Verificar se os dados atualizados foram retornados no corpo da resposta.
+
+### ✔️ **DELETE (Remoção de Dados)**
+- [x] Deletar um usuário (post) existente e validar a resposta 204.
 
 ## 🚀 Tecnologias e Padrões Utilizados
 
