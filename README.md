@@ -71,4 +71,13 @@ A suíte de testes foi planejada para cobrir todas as operações CRUD (Create, 
 
 Com o ambiente virtual ativo, use o comando abaixo a partir da raiz do projeto:
 ```bash
-python -m robot -d results tests/
+  python -m robot -d results tests/
+```
+
+## 👨‍💻 Autor
+
+**Marcelo Ostheimer**
+* LinkedIn: https://www.linkedin.com/in/marceloostheimer/
+* GitHub: https://github.com/ostheimer-marcelo
+
+
