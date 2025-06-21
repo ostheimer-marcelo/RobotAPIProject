@@ -1,32 +1,36 @@
 *** Settings ***
-Documentation       Testes para a API de Usuários do ReqRes.
-Resource            ../resources/users_keywords.robot
-Suite Setup         Conectar a API ReqRes
+Documentation       Testes para a API de Posts do JSONPlaceholder.
+Resource            ../resources/api_keywords.robot
+# Vamos renomear a sessão para refletir a API que estamos usando
+Suite Setup         Create Session    placeholder    https://jsonplaceholder.typicode.com    verify=${False}
 
 *** Test Cases ***
-Listar usuarios com sucesso e validar o primeiro email
-    [Documentation]    Faz uma requisição para a lista de usuários e
-    ...                valida o status e um dado específico na resposta.
-    [Tags]             API    Users    GET    Smoke
+Criar novo post com sucesso
+    [Documentation]    Cria um post via POST e valida a resposta de sucesso.
+    [Tags]             API    Posts    POST    Smoke
+    ${payload}=    Criar payload para post    Meu Título    Meu incrível post.
+    ${resposta_da_api}=    Criar um novo post via API    ${payload}
+    Verificar se o post foi criado com sucesso    ${resposta_da_api}    ${payload}
 
-    ${resposta_da_api}=    Listar usuarios da pagina 2
-    A resposta da API deve ser bem sucedida    ${resposta_da_api}
-    O email do primeiro usuario deve ser "michael.lawson@reqres.in"    ${resposta_da_api}
+Atualizar um post com sucesso
+    [Documentation]    Atualiza um post existente (ID 1) e valida a resposta.
+    [Tags]             API    Posts    PUT    Regression
 
-# vv ADICIONE ESTE NOVO TESTE ABAIXO vv
-Criar novo usuario com sucesso
-    [Documentation]    Cria um usuário via POST e valida a resposta de sucesso.
-    [Tags]             API    Users    POST    Smoke
+    # ETAPA 1 - PREPARAÇÃO: Montar os dados atualizados.
+    ${payload_atualizado}=    Criar payload para post    Título Atualizado    Corpo Atualizado
 
-    # ETAPA 1 - PREPARAÇÃO: Montar os dados do usuário a ser criado.
-    ${payload}=    Criar payload para novo usuario    Marcelo    Engenheiro de Automação
+    # ETAPA 2 - AÇÃO: Atualizar o post que já existe (ID=1).
+    ${resposta_update}=    Atualizar um post existente    1    ${payload_atualizado}
 
-    # ETAPA 2 - AÇÃO: Enviar a requisição para criar o usuário.
-    ${resposta_da_api}=    Criar um novo usuario via API    ${payload}
+    # ETAPA 3 - VERIFICAÇÃO: Validar se a resposta da atualização foi bem-sucedida.
+    Verificar se o post foi atualizado com sucesso    ${resposta_update}    ${payload_atualizado}
 
-    # ETAPA 3 - VERIFICAÇÃO: Validar se a resposta da API confirma a criação.
-    Verificar se o usuario foi criado com sucesso    ${resposta_da_api}    ${payload}
+Deletar um post com sucesso
+    [Documentation]    Deleta um post existente (ID 1) e valida a resposta.
+    [Tags]             API    Posts    DELETE    Regression
 
-Teste de Diagnostico com API Alternativa
-    [Tags]    Debug
-    Testar Post para JSONPlaceholder
+    # AÇÃO: Deletar diretamente o post que sabemos que existe.
+    ${resposta_delete}=    Deletar um post existente    1
+
+    # VERIFICAÇÃO: Validar se a remoção foi bem-sucedida.
+    Verificar se o post foi deletado com sucesso    ${resposta_delete}

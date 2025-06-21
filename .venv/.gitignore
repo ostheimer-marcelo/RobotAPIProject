@@ -1,0 +1,15 @@
+# Ambiente Virtual Python
+.venv/
+
+# Pasta de resultados do Robot Framework
+results/
+
+# Arquivos de configuração da IDE PyCharm
+.idea/
+
+# Arquivos de compilação e cache do Python
+*.pyc
+__pycache__/
+
+# Arquivos de ambiente locais
+.env

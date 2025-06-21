@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.1 (Python 3.13.3 on win32)" generated="2025-06-21T20:16:15.079759" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Users\osthe\RobotAPIProject\tests">
+<suite id="s1-s1" name="Api Tests" source="C:\Users\osthe\RobotAPIProject\tests\api_tests.robot">
+<kw name="Create Session" owner="RequestsLibrary" type="SETUP">
+<msg time="2025-06-21T20:16:15.367231" level="INFO">Creating Session using : alias=placeholder, url=https://jsonplaceholder.typicode.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>placeholder</arg>
+<arg>https://jsonplaceholder.typicode.com</arg>
+<arg>verify=${False}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-06-21T20:16:15.366942" elapsed="0.000401"/>
+</kw>
+<test id="s1-s1-t1" name="Criar novo post com sucesso" line="8">
+<kw name="Criar payload para post" owner="api_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-06-21T20:16:15.368063" level="INFO">${payload} = {'title': 'Meu Título', 'body': 'Meu incrível post.', 'userId': '1'}</msg>
+<var>${payload}</var>
+<arg>title=${titulo}</arg>
+<arg>body=${corpo}</arg>
+<arg>userId=1</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-06-21T20:16:15.367894" elapsed="0.000184"/>
+</kw>
+<return>
+<value>${payload}</value>
+<status status="PASS" start="2025-06-21T20:16:15.368110" elapsed="0.000028"/>
+</return>
+<msg time="2025-06-21T20:16:15.368198" level="INFO">${payload} = {'title': 'Meu Título', 'body': 'Meu incrível post.', 'userId': '1'}</msg>
+<var>${payload}</var>
+<arg>Meu Título</arg>
+<arg>Meu incrível post.</arg>
+<doc>Cria um dicionário que será o corpo JSON para um post.</doc>
+<status status="PASS" start="2025-06-21T20:16:15.367749" elapsed="0.000459"/>
+</kw>
+<kw name="Criar um novo post via API" owner="api_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-06-21T20:16:15.368513" level="INFO">${headers} = {'Content-Type': 'application/json; charset=UTF-8'}</msg>
+<var>${headers}</var>
+<arg>Content-Type=application/json; charset=UTF-8</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-06-21T20:16:15.368447" elapsed="0.000077"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-06-21T20:16:15.763527" level="INFO">POST Request : url=https://jsonplaceholder.typicode.com/posts 
+ path_url=/posts 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json; charset=UTF-8', 'Content-Length': '78'} 
+ body=b'{"title": "Meu T\\u00edtulo", "body": "Meu incr\\u00edvel post.", "userId": "1"}' 
+ </msg>
+<msg time="2025-06-21T20:16:15.763690" level="INFO">POST Response : url=https://jsonplaceholder.typicode.com/posts 
+ status=201, reason=Created 
+ headers={'Date': 'Sat, 21 Jun 2025 23:16:14 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '91', 'Connection': 'keep-alive', 'Access-Control-Allow-Credentials': 'true', 'Access-Control-Expose-Headers': 'Location', 'Cache-Control': 'no-cache', 'Etag': 'W/"5b-1V43m0+fFpZbeR0/2kRZs+6SsyQ"', 'Expires': '-1', 'Location': 'https://jsonplaceholder.typicode.com/posts/101', 'Nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'Pragma': 'no-cache', 'Report-To': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=osifE1LP2ftfo1Rn%2BmSDGunUGIB8KAXMgbI8nj7LQMI%3D\\u0026sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d\\u0026ts=1750547774"}],"max_age":3600}', 'Reporting-Endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=osifE1LP2ftfo1Rn%2BmSDGunUGIB8KAXMgbI8nj7LQMI%3D&amp;sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&amp;ts=1750547774"', 'Server': 'cloudflare', 'Vary': 'Origin, X-HTTP-Method-Override, Accept-Encoding', 'Via': '2.0 heroku-router', 'X-Content-Type-Options': 'nosniff', 'X-Powered-By': 'Express', 'X-Ratelimit-Limit': '1000', 'X-Ratelimit-Remaining': '999', 'X-Ratelimit-Reset': '1750547791', 'Cf-Cache-Status': 'DYNAMIC', 'CF-RAY': '953736668cd0ae84-GRU', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body={
+  "title": "Meu Título",
+  "body": "Meu incrível post.",
+  "userId": "1",
+  "id": 101
+} 
+ </msg>
+<msg time="2025-06-21T20:16:15.763753" level="INFO">C:\Users\osthe\RobotAPIProject\.venv\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'jsonplaceholder.typicode.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-06-21T20:16:15.764004" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>placeholder</arg>
+<arg>/posts</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-06-21T20:16:15.368563" elapsed="0.395463"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-06-21T20:16:15.764089" elapsed="0.000053"/>
+</return>
+<msg time="2025-06-21T20:16:15.764262" level="INFO">${resposta_da_api} = &lt;Response [201]&gt;</msg>
+<var>${resposta_da_api}</var>
+<arg>${payload}</arg>
+<doc>Envia uma requisição POST para criar um novo post.</doc>
+<status status="PASS" start="2025-06-21T20:16:15.368336" elapsed="0.395944"/>
+</kw>
+<kw name="Verificar se o post foi criado com sucesso" owner="api_keywords">
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>201</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-06-21T20:16:15.764670" elapsed="0.000116"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-06-21T20:16:15.765087" level="INFO">${corpo_da_resposta} = {'title': 'Meu Título', 'body': 'Meu incrível post.', 'userId': '1', 'id': 101}</msg>
+<var>${corpo_da_resposta}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-06-21T20:16:15.764834" elapsed="0.000266"/>
+</kw>
+<kw name="Dictionary Should Contain Sub Dictionary" owner="Collections">
+<arg>${corpo_da_resposta}</arg>
+<arg>${payload_enviado}</arg>
+<doc>Fails unless all items in ``dict2`` are found from ``dict1``.</doc>
+<status status="PASS" start="2025-06-21T20:16:15.765145" elapsed="0.000082"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${corpo_da_resposta}</arg>
+<arg>id</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-06-21T20:16:15.765267" elapsed="0.000055"/>
+</kw>
+<arg>${resposta_da_api}</arg>
+<arg>${payload}</arg>
+<doc>Valida a resposta de uma criação de post bem-sucedida.</doc>
+<status status="PASS" start="2025-06-21T20:16:15.764489" elapsed="0.000857"/>
+</kw>
+<doc>Cria um post via POST e valida a resposta de sucesso.</doc>
+<tag>API</tag>
+<tag>POST</tag>
+<tag>Posts</tag>
+<tag>Smoke</tag>
+<status status="PASS" start="2025-06-21T20:16:15.367431" elapsed="0.398009"/>
+</test>
+<test id="s1-s1-t2" name="Atualizar um post com sucesso" line="15">
+<kw name="Criar payload para post" owner="api_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-06-21T20:16:15.766223" level="INFO">${payload} = {'title': 'Título Atualizado', 'body': 'Corpo Atualizado', 'userId': '1'}</msg>
+<var>${payload}</var>
+<arg>title=${titulo}</arg>
+<arg>body=${corpo}</arg>
+<arg>userId=1</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-06-21T20:16:15.766104" elapsed="0.000132"/>
+</kw>
+<return>
+<value>${payload}</value>
+<status status="PASS" start="2025-06-21T20:16:15.766262" elapsed="0.000012"/>
+</return>
+<msg time="2025-06-21T20:16:15.766464" level="INFO">${payload_atualizado} = {'title': 'Título Atualizado', 'body': 'Corpo Atualizado', 'userId': '1'}</msg>
+<var>${payload_atualizado}</var>
+<arg>Título Atualizado</arg>
+<arg>Corpo Atualizado</arg>
+<doc>Cria um dicionário que será o corpo JSON para um post.</doc>
+<status status="PASS" start="2025-06-21T20:16:15.765986" elapsed="0.000491"/>
+</kw>
+<kw name="Atualizar um post existente" owner="api_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-06-21T20:16:15.766764" level="INFO">${headers} = {'Content-Type': 'application/json; charset=UTF-8'}</msg>
+<var>${headers}</var>
+<arg>Content-Type=application/json; charset=UTF-8</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-06-21T20:16:15.766701" elapsed="0.000073"/>
+</kw>
+<kw name="PUT On Session" owner="RequestsLibrary">
+<msg time="2025-06-21T20:16:16.126024" level="INFO">PUT Request : url=https://jsonplaceholder.typicode.com/posts/1 
+ path_url=/posts/1 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json; charset=UTF-8', 'Content-Length': '78'} 
+ body=b'{"title": "T\\u00edtulo Atualizado", "body": "Corpo Atualizado", "userId": "1"}' 
+ </msg>
+<msg time="2025-06-21T20:16:16.126128" level="INFO">PUT Response : url=https://jsonplaceholder.typicode.com/posts/1 
+ status=200, reason=OK 
+ headers={'Date': 'Sat, 21 Jun 2025 23:16:15 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Access-Control-Allow-Credentials': 'true', 'Cache-Control': 'no-cache', 'Etag': 'W/"5d-5y8MgjDb60V0vNhJ4XPqxxnrNCo"', 'Expires': '-1', 'Nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'Pragma': 'no-cache', 'Report-To': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=DnQpk6COqv%2BnX8Idu7HGCkZ698cI6zML7xK6G%2FmTvew%3D\\u0026sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d\\u0026ts=1750547775"}],"max_age":3600}', 'Reporting-Endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=DnQpk6COqv%2BnX8Idu7HGCkZ698cI6zML7xK6G%2FmTvew%3D&amp;sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&amp;ts=1750547775"', 'Server': 'cloudflare', 'Vary': 'Origin, Accept-Encoding', 'Via': '2.0 heroku-router', 'X-Content-Type-Options': 'nosniff', 'X-Powered-By': 'Express', 'X-Ratelimit-Limit': '1000', 'X-Ratelimit-Remaining': '998', 'X-Ratelimit-Reset': '1750547791', 'Cf-Cache-Status': 'DYNAMIC', 'Content-Encoding': 'gzip', 'CF-RAY': '95373668cf99ae84-GRU', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body={
+  "title": "Título Atualizado",
+  "body": "Corpo Atualizado",
+  "userId": "1",
+  "id": 1
+} 
+ </msg>
+<msg time="2025-06-21T20:16:16.126207" level="INFO">C:\Users\osthe\RobotAPIProject\.venv\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'jsonplaceholder.typicode.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-06-21T20:16:16.126501" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>placeholder</arg>
+<arg>/posts/${id_do_post}</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-06-21T20:16:15.766814" elapsed="0.359752"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-06-21T20:16:16.126643" elapsed="0.000054"/>
+</return>
+<msg time="2025-06-21T20:16:16.126801" level="INFO">${resposta_update} = &lt;Response [200]&gt;</msg>
+<var>${resposta_update}</var>
+<arg>1</arg>
+<arg>${payload_atualizado}</arg>
+<doc>Envia uma requisição PUT para atualizar um post existente.</doc>
+<status status="PASS" start="2025-06-21T20:16:15.766582" elapsed="0.360234"/>
+</kw>
+<kw name="Verificar se o post foi atualizado com sucesso" owner="api_keywords">
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-06-21T20:16:16.127450" elapsed="0.000134"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-06-21T20:16:16.128012" level="INFO">${corpo_da_resposta} = {'title': 'Título Atualizado', 'body': 'Corpo Atualizado', 'userId': '1', 'id': 1}</msg>
+<var>${corpo_da_resposta}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-06-21T20:16:16.127665" elapsed="0.000373"/>
+</kw>
+<kw name="Dictionary Should Contain Sub Dictionary" owner="Collections">
+<arg>${corpo_da_resposta}</arg>
+<arg>${payload_enviado}</arg>
+<doc>Fails unless all items in ``dict2`` are found from ``dict1``.</doc>
+<status status="PASS" start="2025-06-21T20:16:16.128116" elapsed="0.000146"/>
+</kw>
+<arg>${resposta_update}</arg>
+<arg>${payload_atualizado}</arg>
+<doc>Valida a resposta de uma atualização de post bem-sucedida.</doc>
+<status status="PASS" start="2025-06-21T20:16:16.127144" elapsed="0.001166"/>
+</kw>
+<doc>Atualiza um post existente (ID 1) e valida a resposta.</doc>
+<tag>API</tag>
+<tag>Posts</tag>
+<tag>PUT</tag>
+<tag>Regression</tag>
+<status status="PASS" start="2025-06-21T20:16:15.765743" elapsed="0.362735"/>
+</test>
+<test id="s1-s1-t3" name="Deletar um post com sucesso" line="28">
+<kw name="Deletar um post existente" owner="api_keywords">
+<kw name="DELETE On Session" owner="RequestsLibrary">
+<msg time="2025-06-21T20:16:16.487548" level="INFO">DELETE Request : url=https://jsonplaceholder.typicode.com/posts/1 
+ path_url=/posts/1 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2025-06-21T20:16:16.487634" level="INFO">DELETE Response : url=https://jsonplaceholder.typicode.com/posts/1 
+ status=200, reason=OK 
+ headers={'Date': 'Sat, 21 Jun 2025 23:16:15 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Access-Control-Allow-Credentials': 'true', 'Cache-Control': 'no-cache', 'Etag': 'W/"2-vyGp6PvFo4RvsFtPoIWeCReyIC8"', 'Expires': '-1', 'Nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'Pragma': 'no-cache', 'Report-To': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=DnQpk6COqv%2BnX8Idu7HGCkZ698cI6zML7xK6G%2FmTvew%3D\\u0026sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d\\u0026ts=1750547775"}],"max_age":3600}', 'Reporting-Endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=DnQpk6COqv%2BnX8Idu7HGCkZ698cI6zML7xK6G%2FmTvew%3D&amp;sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&amp;ts=1750547775"', 'Server': 'cloudflare', 'Vary': 'Origin, Accept-Encoding', 'Via': '2.0 heroku-router', 'X-Content-Type-Options': 'nosniff', 'X-Powered-By': 'Express', 'X-Ratelimit-Limit': '1000', 'X-Ratelimit-Remaining': '997', 'X-Ratelimit-Reset': '1750547791', 'Cf-Cache-Status': 'DYNAMIC', 'Content-Encoding': 'gzip', 'CF-RAY': '9537366b19e5ae84-GRU', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body={} 
+ </msg>
+<msg time="2025-06-21T20:16:16.487687" level="INFO">C:\Users\osthe\RobotAPIProject\.venv\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'jsonplaceholder.typicode.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-06-21T20:16:16.487953" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>placeholder</arg>
+<arg>/posts/${id_do_post}</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-06-21T20:16:16.129429" elapsed="0.358562"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-06-21T20:16:16.488192" elapsed="0.000040"/>
+</return>
+<msg time="2025-06-21T20:16:16.488332" level="INFO">${resposta_delete} = &lt;Response [200]&gt;</msg>
+<var>${resposta_delete}</var>
+<arg>1</arg>
+<doc>Envia uma requisição DELETE para apagar um post.</doc>
+<status status="PASS" start="2025-06-21T20:16:16.129254" elapsed="0.359092"/>
+</kw>
+<kw name="Verificar se o post foi deletado com sucesso" owner="api_keywords">
+<kw name="Create List" owner="BuiltIn">
+<msg time="2025-06-21T20:16:16.488783" level="INFO">@{status_aceitaveis} = [ 200 | 204 ]</msg>
+<var>@{status_aceitaveis}</var>
+<arg>200</arg>
+<arg>204</arg>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2025-06-21T20:16:16.488701" elapsed="0.000095"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-06-21T20:16:16.489143" level="INFO">${status_code_real} = 200</msg>
+<var>${status_code_real}</var>
+<arg>${response.status_code}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-06-21T20:16:16.488850" elapsed="0.000311"/>
+</kw>
+<kw name="Convert To String" owner="BuiltIn">
+<msg time="2025-06-21T20:16:16.489341" level="INFO">${status_code_como_texto} = 200</msg>
+<var>${status_code_como_texto}</var>
+<arg>${status_code_real}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="PASS" start="2025-06-21T20:16:16.489229" elapsed="0.000125"/>
+</kw>
+<kw name="List Should Contain Value" owner="Collections">
+<arg>${status_aceitaveis}</arg>
+<arg>${status_code_como_texto}</arg>
+<doc>Fails if the ``value`` is not found from ``list``.</doc>
+<status status="PASS" start="2025-06-21T20:16:16.489405" elapsed="0.000090"/>
+</kw>
+<arg>${resposta_delete}</arg>
+<doc>Valida se a resposta de uma remoção foi um sucesso (status 200 ou 204).</doc>
+<status status="PASS" start="2025-06-21T20:16:16.488528" elapsed="0.000995"/>
+</kw>
+<doc>Deleta um post existente (ID 1) e valida a resposta.</doc>
+<tag>API</tag>
+<tag>DELETE</tag>
+<tag>Posts</tag>
+<tag>Regression</tag>
+<status status="PASS" start="2025-06-21T20:16:16.128823" elapsed="0.360804"/>
+</test>
+<doc>Testes para a API de Posts do JSONPlaceholder.</doc>
+<status status="PASS" start="2025-06-21T20:16:15.097728" elapsed="1.392355"/>
+</suite>
+<status status="PASS" start="2025-06-21T20:16:15.080718" elapsed="1.409895"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="3" fail="0" skip="0">API</stat>
+<stat pass="1" fail="0" skip="0">DELETE</stat>
+<stat pass="1" fail="0" skip="0">POST</stat>
+<stat pass="3" fail="0" skip="0">Posts</stat>
+<stat pass="1" fail="0" skip="0">PUT</stat>
+<stat pass="2" fail="0" skip="0">Regression</stat>
+<stat pass="1" fail="0" skip="0">Smoke</stat>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="3" fail="0" skip="0">Tests</stat>
+<stat name="Api Tests" id="s1-s1" pass="3" fail="0" skip="0">Tests.Api Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
