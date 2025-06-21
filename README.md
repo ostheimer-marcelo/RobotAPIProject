@@ -44,7 +44,7 @@ A suíte de testes foi planejada para cobrir todas as operações CRUD (Create, 
     * Arquitetura modular com separação de Testes e Recursos.
     * Keywords reutilizáveis para ações de API.
     * Validação de Status Codes, Headers e Response Body (JSON).
-* **Ferramentas:** Git, GitHub, Ambientes Virtuais (venv).
+* **Ferramentas:** Git, GitHub, Ambientes Virtuais (venv), GitHub Actions (CI/CD).
 
 ## 🔧 Instalação e Configuração
 

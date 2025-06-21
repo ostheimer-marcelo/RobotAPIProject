@@ -1,0 +1,46 @@
+# .github/workflows/api_tests_ci.yml
+
+name: Executar Testes de API com Robot Framework
+
+# Gatilhos para rodar a automação
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+# Trabalhos a serem feitos
+jobs:
+  test-api: # Nome do job
+    runs-on: ubuntu-latest
+
+    steps:
+      # Passo 1: Baixar o código do repositório
+      - name: 1. Baixar o código
+        uses: actions/checkout@v4
+
+      # Passo 2: Configurar o Python
+      - name: 2. Configurar o Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # Passo 3: Instalar as dependências do projeto
+      - name: 3. Instalar as dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Passo 4: Executar os testes de API
+      - name: 4. Executar os testes Robot
+        # Note como o comando é mais simples! Não precisamos passar a variável BROWSER.
+        run: python -m robot -d results tests/
+
+      # Passo 5: Fazer upload dos relatórios
+      - name: 5. Fazer upload dos relatórios
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-test-reports
+          path: results/
